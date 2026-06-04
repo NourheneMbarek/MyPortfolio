@@ -15,11 +15,15 @@ const project = {
       description: "Enter the name of the project",
     },
     defineField({
-      name: "tagline",
-      title: "Tagline",
-      type: "string",
-      validation: (rule) => rule.max(60).required(),
-    }),
+  name: "tagline",
+  title: "Tagline",
+  type: "object",
+  fields: [
+    { name: "en", title: "English", type: "string" },
+    { name: "de", title: "Deutsch", type: "string" },
+    { name: "fr", title: "Français", type: "string" },
+  ],
+}),
     defineField({
       name: "slug",
       title: "Slug",
@@ -54,12 +58,36 @@ const project = {
       ],
     },
     {
-      name: "description",
-      title: "Description",
+  name: "description",
+  title: "Description",
+  type: "object",
+  fields: [
+    {
+      name: "en",
+      title: "English",
       type: "array",
-      description: "Write a full description about this project",
       of: [{ type: "block" }],
     },
+    {
+      name: "de",
+      title: "Deutsch",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "fr",
+      title: "Français",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+  ],
+},
+{
+  name: "technologies",
+  title: "Technologies",
+  type: "array",
+  of: [{ type: "string" }],
+},
   ],
 };
 

@@ -47,6 +47,7 @@ export async function getJob() {
         "slug": slug.current,
         tagline,
         "logo": logo.asset->url,
+        technologies
       }`
     );
   }
@@ -59,7 +60,8 @@ export async function getJob() {
         projectUrl,
         coverImage { alt, "image": asset->url },
         tagline,
-        description
+        description,
+        technologies
       }`,
       { slug }
     );

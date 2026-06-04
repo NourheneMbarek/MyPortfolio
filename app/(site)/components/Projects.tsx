@@ -7,16 +7,16 @@ import type { ProjectType, Locale } from "@/types";
 import { getLocalizedValue } from "@/utils/getLocalizedValue";
 import Reveal from "../components/reveal";
 
-export default async function Project() {
+export default async function Projects() {
   const cookieStore = cookies();
   const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
 
   const projects: ProjectType[] = await getProjects();
 
   return (
-    <main className="max-w-7xl mx-auto md:px-16 px-6">
+    <section id="projects" className="max-w-7xl mx-auto md:px-16 px-6">
      
-        <section id="projects" className="mt-32 scroll-mt-32">
+        <section  className="mt-32 scroll-mt-32">
         <Reveal>
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight">
             {locale === "de"
@@ -28,7 +28,7 @@ export default async function Project() {
         </Reveal>
 
         <Reveal>
-          <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8">
             {locale === "de"
               ? "Eine Auswahl meiner wichtigsten Projekte mit Fokus auf Webentwicklung, APIs, Monitoring, Automatisierung und moderne Benutzeroberflächen."
               : locale === "fr"
@@ -89,6 +89,6 @@ export default async function Project() {
           </Link>
         ))}
       </section>
-    </main>
+    </section>
   );
 }

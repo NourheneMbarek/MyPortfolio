@@ -53,12 +53,13 @@ export type ProjectType = {
   _id: string;
   name: string;
   slug: string;
-  tagline: string;
-  projectUrl: string;
-  logo: string;
+  tagline: LocalizedString;
+  projectUrl?: string;
+  logo?: string;
+  technologies?: string[];
   coverImage: {
     alt: string | null;
     image: string;
   };
-  description: PortableTextBlock[];
+  description: LocalizedPortableText | PortableTextBlock[];
 };

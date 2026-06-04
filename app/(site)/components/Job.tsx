@@ -9,7 +9,7 @@ export default async function Job() {
   const cookieStore = cookies();
   const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
   return (
-    <section className="mt-32">
+   <section id="experience" className="mt-32 scroll-mt-32">
       <div className="mb-16">
         <h2 className="font-semibold text-4xl mb-4">Work Experience</h2>
       </div>

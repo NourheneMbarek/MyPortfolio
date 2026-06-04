@@ -5,7 +5,7 @@ import Navbar from "./components/global/Navbar";
 import Footer from "./components/global/Footer";
 import ThemeProvider from "./components/ThemeProvider";
 import AnimatedBackground from "./components/AnimatedBackground";
-
+import BackToTop from "./components/BackToTop";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -60,6 +60,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+           <BackToTop />
         </ThemeProvider>
       </body>
     </html>

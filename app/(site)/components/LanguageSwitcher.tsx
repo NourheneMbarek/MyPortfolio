@@ -27,6 +27,7 @@ export default function LanguageSwitcher() {
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
 
     setLocale(newLocale);
+     window.dispatchEvent(new Event("languageChange"));
     router.refresh();
   };
 
