@@ -9,9 +9,36 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nourhene Mbarek | Full Stack Developer",
+
   metadataBase: new URL("https://portfolio-nourhene-mbk.vercel.app"),
+
   description:
     "Portfolio of Nourhene Mbarek, Full Stack Developer specialized in React, Next.js, Laravel and TypeScript.",
+
+  openGraph: {
+    title: "Nourhene Mbarek | Full Stack Developer",
+    description:
+      "Full Stack Developer specialized in React, Next.js, Laravel and TypeScript.",
+    url: "https://portfolio-nourhene-mbk.vercel.app",
+    siteName: "Nourhene Mbarek Portfolio",
+    type: "website",
+    images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Nourhene Mbarek Portfolio",
+    },
+  ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Nourhene Mbarek | Full Stack Developer",
+    description:
+      "Full Stack Developer specialized in React, Next.js, Laravel and TypeScript.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
