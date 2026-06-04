@@ -16,20 +16,23 @@ export type LocalizedPortableText = {
   fr?: PortableTextBlock[];
 };
 export type ProfileType = {
-  _id: string,
-  fullName: string,
-  headline: string,
+  _id: string;
+  fullName: string;
+  headline: LocalizedString;
   profileImage: {
-    alt: string,
-    image: string
-  },
-  shortBio: string,
-  email: string,
-  fullBio: PortableTextBlock[],
-  location: string,
-  resumeURL: string,
-  socialLinks: string[],
-  skills: string[],
+    alt: string;
+    image: string;
+  };
+  shortBio: LocalizedString;
+  email: string;
+  fullBio: LocalizedPortableText;
+  location: string;
+  resumeURL: string;
+  socialLinks: {
+    github?: string;
+    linkedin?: string;
+  };
+  skills: string[];
 };
 
 export type JobType = {

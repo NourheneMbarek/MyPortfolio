@@ -59,7 +59,7 @@ export default async function Home() {
                           </Reveal>
                           <Reveal>
                             <div className="flex flex-col gap-y-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                              <PortableText value={data.fullBio} />
+                              <PortableText value={data.fullBio?.en || []}  />
                             </div>
                           </Reveal>
                         </div>
