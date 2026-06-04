@@ -35,3 +35,11 @@ html {
   background: #a855f7;
   color: white;
 }
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(168,85,247,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,85,247,.05) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+}

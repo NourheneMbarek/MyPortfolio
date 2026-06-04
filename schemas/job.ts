@@ -13,11 +13,27 @@ const job = {
       description: "What is the name of the company?",
     },
     {
-      name: "jobTitle",
-      title: "Job Title",
+  name: "jobTitle",
+  title: "Job Title",
+  type: "object",
+  fields: [
+    {
+      name: "en",
+      title: "English",
       type: "string",
-      description: "Enter the job title. E.g: Software Developer",
     },
+    {
+      name: "de",
+      title: "Deutsch",
+      type: "string",
+    },
+    {
+      name: "fr",
+      title: "Français",
+      type: "string",
+    },
+  ],
+},
     {
       name: "logo",
       title: "Company Logo",
@@ -28,13 +44,31 @@ const job = {
       title: "Company Website",
       type: "url",
     },
+   {
+  name: "description",
+  title: "Job Description",
+  type: "object",
+  fields: [
     {
-      name: "description",
-      title: "Job Description",
+      name: "en",
+      title: "English",
       type: "text",
       rows: 3,
-      description: "Write a brief description about this role",
     },
+    {
+      name: "de",
+      title: "Deutsch",
+      type: "text",
+      rows: 3,
+    },
+    {
+      name: "fr",
+      title: "Français",
+      type: "text",
+      rows: 3,
+    },
+  ],
+},
     {
       name: "startDate",
       title: "Start Date",

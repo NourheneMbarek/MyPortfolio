@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/global/Navbar";
 import Footer from "./components/global/Footer";
 import ThemeProvider from "./components/ThemeProvider";
+import AnimatedBackground from "./components/AnimatedBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +24,13 @@ export const metadata: Metadata = {
     siteName: "Nourhene Mbarek Portfolio",
     type: "website",
     images: [
-    {
-      url: "/og-image.png",
-      width: 1200,
-      height: 630,
-      alt: "Nourhene Mbarek Portfolio",
-    },
-  ],
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nourhene Mbarek Portfolio",
+      },
+    ],
   },
 
   twitter: {
@@ -48,10 +49,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
+      {/* <body
         className={`${inter.className} bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white transition-colors duration-300`}
+      > */}
+      <body
+        className={`${inter.className} bg-grid  bg-white text-zinc-900 dark:bg-zinc-950 dark:text-white transition-colors duration-300`}
       >
         <ThemeProvider>
+          <AnimatedBackground />
           <Navbar />
           {children}
           <Footer />

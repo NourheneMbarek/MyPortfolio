@@ -28,9 +28,9 @@ export type ProfileType = {
   fullBio: LocalizedPortableText;
   location: string;
   resumeURL: {
-  en?: string;
-  de?: string;
-};
+    en?: string;
+    de?: string;
+  };
   socialLinks: {
     github?: string;
     linkedin?: string;
@@ -39,27 +39,26 @@ export type ProfileType = {
 };
 
 export type JobType = {
-    _id: string;
-    name: string;
-    jobTitle: string;
-    logo: string;
-    url: string;
-    description: string;
-    startDate: Date;
-    endDate: Date;
-  };
+  _id: string;
+  name: string;
+  jobTitle: LocalizedString;
+  logo: string;
+  url: string;
+  description: LocalizedString;
+  startDate: string;
+  endDate?: string;
+};
 
-
-  export type ProjectType = {
-    _id: string;
-    name: string;
-    slug: string;
-    tagline: string;
-    projectUrl: string;
-    logo: string;
-    coverImage: {
-      alt: string | null;
-      image: string;
-    };
-    description: PortableTextBlock[];
+export type ProjectType = {
+  _id: string;
+  name: string;
+  slug: string;
+  tagline: string;
+  projectUrl: string;
+  logo: string;
+  coverImage: {
+    alt: string | null;
+    image: string;
   };
+  description: PortableTextBlock[];
+};

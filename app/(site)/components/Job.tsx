@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { getJob } from "@/sanity/sanity.query";
 import type { JobType } from "@/types";
-
+import { getLocalizedValue } from "@/utils/getLocalizedValue";
+import type { Locale } from "@/types";
+import { cookies } from "next/headers";
 export default async function Job() {
   const job: JobType[] = await getJob();
-
+  const cookieStore = cookies();
+  const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
   return (
     <section className="mt-32">
       <div className="mb-16">
@@ -14,7 +17,10 @@ export default async function Job() {
       <div className="flex flex-col gap-y-12">
         {job
           .slice() // Create a shallow copy of the array
-          .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()) // Sort the array in descending order based on startDate
+          .sort(
+            (a, b) =>
+              new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
+          ) // Sort the array in descending order based on startDate
           .map((data) => (
             <div
               key={data._id}
@@ -34,17 +40,18 @@ export default async function Job() {
               </a>
               <div className="flex flex-col items-start">
                 <h3 className="text-xl font-bold">{data.name}</h3>
-                <p>{data.jobTitle}</p>
+
+                <p>{getLocalizedValue(data.jobTitle, locale)}</p>
                 <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
                   {data?.startDate?.toString()} - {data?.endDate?.toString()}
                 </small>
-                <p className="text-base text-zinc-600 dark:text-zinc-400 my-4">{data.description}</p>
+                <p className="text-base text-zinc-600 dark:text-zinc-400 my-4">
+                  {getLocalizedValue(data.description, locale)}
+                </p>
               </div>
             </div>
           ))}
       </div>
-</section>
-
-
+    </section>
   );
 }
