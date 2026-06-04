@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+  "node": "24.x"
+},
   "dependencies": {
     "@sanity/vision": "^3.15.1",
     "@types/node": "20.5.0",
