@@ -44,7 +44,8 @@ export default async function Project({ params }: Props) {
           <a
             href={project.projectUrl}
             rel="noreferrer noopener"
-            className="bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
+          className="bg-zinc-100 text-zinc-900 dark:bg-[#1d1d20] dark:text-white hover:border-zinc-300 dark:hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
+            // className="bg-zinc-100 dark:bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
           >
             Explore
           </a>
@@ -57,8 +58,7 @@ export default async function Project({ params }: Props) {
           src={project.coverImage?.image || fallBackImage}
           alt={project.coverImage?.alt || project.name}
         />
-
-        <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
+        <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-600 dark:text-zinc-400">
           <PortableText value={project.description} />
         </div>
       </div>

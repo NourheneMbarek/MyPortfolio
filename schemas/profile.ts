@@ -16,9 +16,12 @@ const profile = {
     defineField({
       name: "headline",
       title: "Headline",
-      type: "string",
-      description: "In one short sentence, what do you do?",
-      validation: (Rule) => Rule.required().min(40).max(50),
+      type: "object",
+      fields: [
+        { name: "en", title: "English", type: "string" },
+        { name: "de", title: "Deutsch", type: "string" },
+        { name: "fr", title: "Français", type: "string" },
+      ],
     }),
     {
       name: "profileImage",
@@ -34,11 +37,16 @@ const profile = {
         },
       ],
     },
+
     {
       name: "shortBio",
       title: "Short Bio",
-      type: "text",
-      rows: 4,
+      type: "object",
+      fields: [
+        { name: "en", title: "English", type: "text", rows: 4 },
+        { name: "de", title: "Deutsch", type: "text", rows: 4 },
+        { name: "fr", title: "Français", type: "text", rows: 4 },
+      ],
     },
     {
       name: "email",
@@ -50,11 +58,31 @@ const profile = {
       title: "Location",
       type: "string",
     },
+
     {
       name: "fullBio",
       title: "Full Bio",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "object",
+      fields: [
+        {
+          name: "en",
+          title: "English",
+          type: "array",
+          of: [{ type: "block" }],
+        },
+        {
+          name: "de",
+          title: "Deutsch",
+          type: "array",
+          of: [{ type: "block" }],
+        },
+        {
+          name: "fr",
+          title: "Français",
+          type: "array",
+          of: [{ type: "block" }],
+        },
+      ],
     },
     {
       name: "resumeURL",
@@ -78,7 +106,7 @@ const profile = {
           title: "Linkedin URL",
           type: "url",
           initialValue: "https://linkedin.com/in/",
-        }
+        },
       ],
       options: {
         collapsed: false,
@@ -93,7 +121,29 @@ const profile = {
       description: "Add a list of skills",
       of: [{ type: "string" }],
     },
- ],
+  ],
 };
 
 export default profile;
+
+//  {
+//       name: "shortBio",
+//       title: "Short Bio",
+//       type: "text",
+//       rows: 4,
+//     },
+
+// {
+//     name: "fullBio",
+//     title: "Full Bio",
+//     type: "array",
+//     of: [{ type: "block" }],
+//   },
+
+// {
+//       name: "headline",
+//       title: "Headline",
+//       type: "string",
+//       description: "In one short sentence, what do you do?",
+//       validation: (Rule) => Rule.required().min(40).max(50),
+//     }

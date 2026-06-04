@@ -2,6 +2,19 @@
 
 import { PortableTextBlock } from "sanity";
 
+export type Locale = "en" | "de" | "fr";
+
+export type LocalizedString = {
+  en?: string;
+  de?: string;
+  fr?: string;
+};
+
+export type LocalizedPortableText = {
+  en?: PortableTextBlock[];
+  de?: PortableTextBlock[];
+  fr?: PortableTextBlock[];
+};
 export type ProfileType = {
   _id: string,
   fullName: string,
