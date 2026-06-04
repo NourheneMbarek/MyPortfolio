@@ -14,7 +14,10 @@ export async function getProfile() {
       location,
       fullBio,
       email,
-      "resumeURL": resumeURL.asset->url,
+      "resumeURL": resumeURL {
+  "en": en.asset->url,
+  "de": de.asset->url
+},
       socialLinks,
       skills
     }`

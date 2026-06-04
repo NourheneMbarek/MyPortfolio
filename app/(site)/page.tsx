@@ -9,6 +9,7 @@ import { BiEnvelope, BiFile } from "react-icons/bi";
 import { cookies } from "next/headers";
 import type { Locale } from "@/types";
 import { getLocalizedValue } from "@/utils/getLocalizedValue";
+
 export default async function Home() {
   const cookieStore = cookies();
   const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
@@ -18,89 +19,82 @@ export default async function Home() {
     <main className="max-w-7xl mx-auto lg:px-16 px-6">
       <section className="lg:mt-32 mt-20 mb-24">
         {profile &&
-          profile.map((data) => (
-            <div key={data._id}>
-              <section className="grid lg:grid-cols-2 grid-cols-1 gap-16 items-center">
-                <div className="order-2 lg:order-none">
-                  <Reveal>
-                    <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-4">
-                      {getLocalizedValue(data.headline, locale) ||
-                        "Full Stack Developer"}
-                    </h1>
-                  </Reveal>
-                  <Reveal>
-                    <div className="flex flex-col gap-y-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                      <PortableText
-                        value={
-                          Array.isArray(data.fullBio)
-                            ? data.fullBio
-                            : getLocalizedValue(data.fullBio, locale) || []
-                        }
-                      />
-                    </div>
-                  </Reveal>
-                </div>
+          profile.map((data) => {
+            const resumeUrl =
+              locale === "de"
+                ? data.resumeURL?.de || data.resumeURL?.en
+                : data.resumeURL?.en || data.resumeURL?.de;
 
-                <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
-                  <Reveal>
-                    <div>
-                      <Image
-                        // className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-zinc-100 dark:bg-[#1d1d20]"
-                        className="rounded-2xl mb-4 object-cover w-full max-w-[420px] h-[420px] bg-zinc-100 dark:bg-[#1d1d20]"
-                        src={data.profileImage.image}
-                        width={400}
-                        height={400}
-                        quality={100}
-                        alt={data.profileImage.alt}
-                      />
+            return (
+              <div key={data._id}>
+                <section className="grid lg:grid-cols-2 grid-cols-1 gap-16 items-center">
+                  <div className="order-2 lg:order-none">
+                    <Reveal>
+                      <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-4">
+                        {getLocalizedValue(data.headline, locale) ||
+                          "Full Stack Developer"}
+                      </h1>
+                    </Reveal>
 
-                      <a
-                        href={`${data.resumeURL}?dl=${data.fullName}_resume`}
-                        className="flex items-center justify-center gap-x-2 bg-zinc-100 dark:bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"
-                      >
-                        <BiFile className="text-base" /> Download
-                      </a>
-                    </div>
-                  </Reveal>
+                    <Reveal>
+                      <div className="flex flex-col gap-y-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        <PortableText
+                          value={
+                            Array.isArray(data.fullBio)
+                              ? data.fullBio
+                              : getLocalizedValue(data.fullBio, locale) || []
+                          }
+                        />
+                      </div>
+                    </Reveal>
+                  </div>
 
-                  <Reveal>
-                    <ul>
-                      <li>
-                        <a
-                          href={`mailto:${data.email}`}
-                          className="flex items-center gap-x-2 hover:text-purple-400 duration-300"
-                        >
-                          <BiEnvelope className="text-lg" />
-                          {data.email}
-                        </a>
-                      </li>
-                    </ul>
-                  </Reveal>
-                </div>
-              </section>
+                  <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
+                    <Reveal>
+                      <div>
+                        <Image
+                          className="rounded-2xl mb-4 object-cover w-full max-w-[420px] h-[420px] bg-zinc-100 dark:bg-[#1d1d20]"
+                          src={data.profileImage.image}
+                          width={400}
+                          height={400}
+                          quality={100}
+                          alt={data.profileImage.alt}
+                        />
 
-              <Reveal>
-                <section className="mt-24 max-w-2xl">
-                  <h2 className="font-semibold text-4xl mb-4">Expertise</h2>
-                  <p className="text-zinc-600 dark:text-zinc-400 max-w-lg">
-                    I&apos;ve spent few years working on my skills. In no
-                    particular order, here are a few of them.
-                  </p>
+                        {resumeUrl && (
+                          <a
+                            href={resumeUrl}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="flex items-center justify-center gap-x-2 bg-zinc-100 dark:bg-[#1d1d20] border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 rounded-md duration-200 py-2 text-center font-medium"
+                          >
+                            <BiFile className="text-base" />
+                            {locale === "de"
+                              ? "Lebenslauf herunterladen"
+                              : "Download Resume"}
+                          </a>
+                        )}
+                      </div>
+                    </Reveal>
 
-                  <ul className="flex flex-wrap items-center gap-3 mt-8">
-                    {data.skills.map((skill, id) => (
-                      <li
-                        key={id}
-                        className="bg-zinc-100 dark:bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
+                    <Reveal>
+                      <ul>
+                        <li>
+                          <a
+                            href={`mailto:${data.email}`}
+                            className="flex items-center gap-x-2 hover:text-purple-400 duration-300"
+                          >
+                            <BiEnvelope className="text-lg" />
+                            {data.email}
+                          </a>
+                        </li>
+                      </ul>
+                    </Reveal>
+                  </div>
                 </section>
-              </Reveal>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         {/* <HeroSvg /> */}
       </section>
       <Job />

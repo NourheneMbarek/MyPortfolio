@@ -27,7 +27,10 @@ export type ProfileType = {
   email: string;
   fullBio: LocalizedPortableText;
   location: string;
-  resumeURL: string;
+  resumeURL: {
+  en?: string;
+  de?: string;
+};
   socialLinks: {
     github?: string;
     linkedin?: string;
