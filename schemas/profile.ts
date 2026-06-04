@@ -86,8 +86,20 @@ const profile = {
     },
     {
       name: "resumeURL",
-      title: "Upload Resume",
-      type: "file",
+      title: "Resume",
+      type: "object",
+      fields: [
+        {
+          name: "en",
+          title: "English Resume",
+          type: "file",
+        },
+        {
+          name: "de",
+          title: "German Resume",
+          type: "file",
+        },
+      ],
     },
     {
       name: "socialLinks",

@@ -23,8 +23,14 @@ export default async function About() {
                 </Reveal>
                 <Reveal>
                   <div className="flex flex-col gap-y-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-               
-                    <PortableText value={data.fullBio?.en || []} />
+                
+                    <PortableText
+                      value={
+                        Array.isArray(data.fullBio)
+                          ? data.fullBio
+                          : data.fullBio?.en || []
+                      }
+                    />
                   </div>
                 </Reveal>
               </div>

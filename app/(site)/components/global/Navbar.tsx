@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../icons/logo.png";
 import ThemeToggle from "../ThemeToggle";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function Navbar() {
   return (
@@ -14,17 +15,25 @@ export default function Navbar() {
         <nav>
           <ul className="flex items-center gap-x-6">
             <li>
-              <Link href="/about" className="hover:text-purple-500 duration-300">
+              <Link
+                href="/about"
+                className="hover:text-purple-500 duration-300"
+              >
                 About
               </Link>
             </li>
 
             <li>
-              <Link href="/projects" className="hover:text-purple-500 duration-300">
+              <Link
+                href="/projects"
+                className="hover:text-purple-500 duration-300"
+              >
                 Projects
               </Link>
             </li>
-
+            <li>
+              <LanguageSwitcher />
+            </li>
             <li>
               <ThemeToggle />
             </li>
