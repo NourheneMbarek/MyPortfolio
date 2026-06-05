@@ -13,6 +13,7 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import ShareButton from "./components/ShareButton";
 export default async function Home() {
   const cookieStore = cookies();
   const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
@@ -179,13 +180,27 @@ transition-all duration-500"
                             href={resumeUrl}
                             target="_blank"
                             rel="noreferrer noopener"
-                            className="flex items-center justify-center gap-x-2 bg-zinc-100 dark:bg-[#1d1d20] border border-transparent   rounded-md duration-200 py-2 text-center font-medium
-                            hover:bg-purple-500
-                            hover:text-white
-                            hover:border-purple-500
-                            dark:hover:text-white
-                            dark:hover:border-purple-500
-                            "
+                            // className="flex items-center justify-center gap-x-2 bg-zinc-100 dark:bg-[#1d1d20] border border-transparent   rounded-md duration-200 py-2 text-center font-medium
+                            // hover:bg-purple-500
+                            // hover:text-white
+                            // hover:border-purple-500
+                            // dark:hover:text-white
+                            // dark:hover:border-purple-500
+                            // mb-2
+                            
+                            // "
+                             className="
+    w-full
+    flex items-center justify-center gap-2
+    bg-purple-500/10
+    text-purple-500
+    border border-purple-500/20
+    hover:bg-purple-500
+    hover:text-white
+    rounded-md
+    py-2
+    transition-all duration-300
+  "
                           >
                             <BiFile className="text-base" />
                             {locale === "de"
@@ -193,6 +208,7 @@ transition-all duration-500"
                               : "Download Resume"}
                           </a>
                         )}
+                        <ShareButton/>
                       </div>
                     </Reveal>
 
