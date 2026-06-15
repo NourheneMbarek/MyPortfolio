@@ -83,7 +83,7 @@ const locationText = {
             return (
               <div key={data._id}>
                 <section className="grid lg:grid-cols-2 grid-cols-1 gap-16 items-center">
-                  <div className="order-2 lg:order-none">
+                  <div className="order-1 lg:order-none">
                     <Reveal>
                       <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-4">
                         {getLocalizedValue(data.headline, locale) ||
@@ -146,13 +146,22 @@ const locationText = {
 </Reveal>
                   </div>
 
-                  <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
+                  <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 order-2 lg:order-1 mb-12">
                     <Reveal>
                       <div>
                         <Image
-                          className="rounded-2xl mb-4 object-cover w-full max-w-[420px] h-[420px] bg-zinc-100 dark:bg-[#1d1d20]
-                          hover:scale-[1.02]
-transition-all duration-500"
+//                           className="rounded-2xl mb-4 object-cover w-full max-w-[420px] h-[420px] bg-zinc-100 dark:bg-[#1d1d20]
+//                           hover:scale-[1.02]
+// transition-all duration-500"
+className="
+  rounded-2xl mb-4 object-cover
+  w-full
+  max-w-[320px] sm:max-w-[420px]
+  h-[320px] sm:h-[420px]
+  bg-zinc-100 dark:bg-[#1d1d20]
+  hover:scale-[1.02]
+  transition-all duration-500
+"
                           src={data.profileImage.image}
                           width={400}
                           height={400}

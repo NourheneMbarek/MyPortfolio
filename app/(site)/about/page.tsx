@@ -14,7 +14,7 @@ export default async function About() {
         profile.map((data) => (
           <div key={data._id}>
             <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
-              <div className="order-2 lg:order-none">
+              <div className="order-1 lg:order-none">
                 <Reveal>
                   <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
                     I&apos;m {data.fullName}. I live in {data.location}, where I
@@ -35,7 +35,7 @@ export default async function About() {
                 </Reveal>
               </div>
 
-              <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
+              <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 order-2 lg:order-1 mb-12">
                 <Reveal>
                   <div>
                     <Image

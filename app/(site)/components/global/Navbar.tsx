@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Logo from "../../icons/logo.png";
 import ThemeToggle from "../ThemeToggle";
 import LanguageSwitcher from "../LanguageSwitcher";
-
+import { Menu, X } from "lucide-react";
 
 const labels = {
   en: {
@@ -46,7 +46,7 @@ const navItems = [
 export default function Navbar() {
   const [locale, setLocale] = useState<Locale>("en");
   const [activeSection, setActiveSection] = useState("home");
-
+const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const getCookieLocale = () => {
       const cookie = document.cookie
@@ -137,44 +137,86 @@ useEffect(() => {
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
 
-  return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/70 dark:border-zinc-800/70 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto flex items-center justify-between py-5 md:px-0 px-6">
-        <Link href="/">
-          <Image src={Logo} width={25} height={25} alt="logo" />
-        </Link>
+return (
+  <header className="sticky top-0 z-50 border-b border-zinc-200/70 dark:border-zinc-800/70 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
+    <div className="max-w-6xl mx-auto flex items-center justify-between py-5 md:px-0 px-6">
+      <Link href="/#home" onClick={() => setIsOpen(false)}>
+        <Image src={Logo} width={25} height={25} alt="logo" />
+      </Link>
 
-        <nav>
-          <ul className="flex items-center gap-x-5">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
+      {/* Desktop nav */}
+      <nav className="hidden md:block">
+        <ul className="flex items-center gap-x-5">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
 
-              return (
-                <li key={item.id}>
-                  <Link
-                    href={item.href}
-                    className={`text-sm font-medium transition-colors ${
-                      isActive
-                        ? "text-purple-500"
-                        : "text-zinc-700 dark:text-zinc-300 hover:text-purple-500"
-                    }`}
-                  >
-                    {labels[locale][item.id]}
-                  </Link>
-                </li>
-              );
-            })}
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-purple-500"
+                      : "text-zinc-700 dark:text-zinc-300 hover:text-purple-500"
+                  }`}
+                >
+                  {labels[locale][item.id]}
+                </Link>
+              </li>
+            );
+          })}
 
-            <li>
-              <LanguageSwitcher />
-            </li>
+          <li>
+            <LanguageSwitcher />
+          </li>
 
-            <li>
-              <ThemeToggle />
-            </li>
-          </ul>
-        </nav>
+          <li>
+            <ThemeToggle />
+          </li>
+        </ul>
+      </nav>
+
+      {/* Mobile actions */}
+      <div className="flex items-center gap-3 md:hidden">
+        <LanguageSwitcher />
+        <ThemeToggle />
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="rounded-full border border-zinc-300 dark:border-zinc-700 p-2"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
-    </header>
-  );
+    </div>
+
+    {/* Mobile menu */}
+    {isOpen && (
+      <nav className="md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md">
+        <ul className="flex flex-col px-6 py-4 gap-4">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-purple-500"
+                      : "text-zinc-700 dark:text-zinc-300 hover:text-purple-500"
+                  }`}
+                >
+                  {labels[locale][item.id]}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    )}
+  </header>
+);
 }
