@@ -6,6 +6,7 @@ import Footer from "./components/global/Footer";
 import ThemeProvider from "./components/ThemeProvider";
 import AnimatedBackground from "./components/AnimatedBackground";
 import BackToTop from "./components/BackToTop";
+import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -60,7 +61,8 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-           <BackToTop />
+          <BackToTop />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

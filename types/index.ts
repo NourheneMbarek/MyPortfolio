@@ -63,3 +63,11 @@ export type ProjectType = {
   };
   description: LocalizedPortableText | PortableTextBlock[];
 };
+export type CertificationType = {
+  _id: string;
+  title: string;
+  issuer?: string;
+  year?: string;
+  description: LocalizedString;
+  url?: string;
+};

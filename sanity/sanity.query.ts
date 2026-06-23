@@ -66,3 +66,16 @@ export async function getJob() {
       { slug }
     );
   }
+
+  export async function getCertifications() {
+  return client.fetch(
+    groq`*[_type == "certification"] | order(year desc){
+      _id,
+      title,
+      issuer,
+      year,
+      description,
+      url
+    }`
+  );
+}
